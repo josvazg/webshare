@@ -11,17 +11,17 @@ Usage samples:
 ```
 webshare 
 ```
-Will share the current directory through the URL :80/webshare/
+Will share the current directory (eg. /home/dirname) through the URL :80/dirname/
 
 ```
 webshare -port 1080
 ```
-Will share the current directory through the URL :80/webshare/
+Will share the current directory (eg. /home/dirname) through the URL :80/dirname/
 
 ```
 webshare -dir /home/jdoe/sharedfiles -port 1080
 ```
-Will share /home/jdoe/sharedfiles through the URL :1080/webshare/
+Will share /home/jdoe/sharedfiles through the URL :1080/sharedfiles/
 
 ```
 webshare -prefix / -dir /home/jdoe/sharedfiles -port 1080
