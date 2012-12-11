@@ -25,7 +25,7 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"path"
+	"path/filepath"
 )
 
 const (
@@ -41,15 +41,6 @@ func currentDir() string {
 	return dir
 }
 
-// Abs gets the absolute path from name
-func Abs(name string) (string, error) {
-	if path.IsAbs(name) {
-		return name, nil
-	}
-	wd, err := os.Getwd()
-	return path.Join(wd, name), err
-}
-
 func main() {
 	// Load command line config
 	var prefix,dir string
@@ -60,7 +51,7 @@ func main() {
 	flag.Parse()
 
 	// Check directory
-	dir,err:=Abs(dir)
+	dir,err:=filepath.Abs(dir)
 	if err != nil {
 		log.Fatal("Can't open: ", err)
 	}
@@ -70,7 +61,7 @@ func main() {
 		if dir=="/" {
 			prefix=PREFIX
 		} else {
-			prefix="/"+path.Base(dir)+"/"
+			prefix="/"+filepath.Base(dir)+"/"
 		}
 	}
 	
