@@ -1,6 +1,6 @@
 #!/bin/sh
 set -e
 
-cd "$SNAP_DATA"
+cd "$HOME"
 mkdir -p shared
 webshare -dir shared -port 8888 &

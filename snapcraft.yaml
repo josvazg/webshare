@@ -1,21 +1,27 @@
 name: webshare
-version: 0.1
+version: 0.2
 summary: Webshare shares the contents of a filder via HTTP
 description: Webshare allows easy file sharing in a LAN without security setup,
-        just don't share in the folder anything private
+        just don't share in the folder anything private.
+        Go to http://localhost:8888/share to test it
+        Everything left in ~/shared is now PUBLIC!
+
 confinement: strict
 
 apps:
     webshare:
         command: bin/webshare.sh
-        daemon: simple
-        plugs: [ network-bind ]
+        stop-command: pkill webshare
+        daemon: forking
+        plugs: [ network-bind, home ]
 
 parts:
     webshare:
         plugin: go
         source: git://github.com/josvazg/webshare
+        go-importpath: github.com/josvaz/webshare
     glue:
-        plugin: copy
-        files:
+        plugin: dump
+        source: .
+        organize:
             webshare.sh: bin/webshare.sh
